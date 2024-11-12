@@ -62,7 +62,7 @@ Presentational component: Chủ yếu chịu trách nhiệm hiển thị giao di
 Container component: Chịu trách nhiệm quản lý trạng thái, dữ liệu, và xử lý logic nghiệp. Chứa logic nghiệp phức tạp và xử lý dữ liệu. Quản lý trạng thái và có thể truyền dữ liệu xuống các presentational components. Thường được gọi là "smart component."
 
 #11. Controlled component và Uncontrolled component khác nhau như thế nào ?
-Một Controlled Component là một component nhận giá trị hiện tại của nó thông qua cácprops và thông báo các thay đổi thông qua các lệnh gọi lại như onChange. Một component mẹ “điều khiển” nó bằng cách xử lý callback và quản lý state của chính nó và chuyển các giá trị mới làm props cho controlled component. Bạn cũng có thể gọi đây là một “thành phần câm” (dumb component)
+Một Controlled Component là một component nhận giá trị hiện tại của nó thông qua các props và thông báo các thay đổi thông qua các lệnh gọi lại như onChange. Một component mẹ “điều khiển” nó bằng cách xử lý callback và quản lý state của chính nó và chuyển các giá trị mới làm props cho controlled component. Bạn cũng có thể gọi đây là một “thành phần câm” (dumb component)
 Uncontrolled component là một component lưu trữ state riêng của nó trong nội bộ và bạn truy vấn DOM bằng cách sử dụng tham chiếu để tìm giá trị hiện tại của nó khi bạn cần. Điều này giống HTML truyền thống.
 Controlled components là một component kiểm soát các phần tử đầu vào (input elements).
 
