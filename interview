@@ -1,0 +1,173 @@
+#Có những loại biến nào, sự khác nhau của chúng
+Var, Let: có thể reassigned
+
+Const: không thể reassigned
+
+#Trình bày các loại scope
+Global: Bao gồm biến var, const, let được khai báo ở ngoài cùng file javascript.
+
+Block code: Bao gồm biến let, const được khai báo trong block code như: if else, switch case sẽ có phạm vi block code, trường hợp var được khai báo trong block code sẽ có phạm vi global.
+
+Local: Còn được gọi là phạm vi hàm, bao gồm let, const, var hoặc hàm được khai báo trong một hàm sẽ tạo ra phạm vi hàm
+
+#Khái niệm Closure
+Closure là một function ghi nhớ biến ở phạm vi bên ngoài của nó, kể cả sau khi phạm vi đó đã bị giải phóng.
+
+function outer() {
+  let count = 0;
+  return function () {
+    return ++count;
+  };
+}
+const counter = outer();
+
+#Trình bày sự khác nhau giữa local stogare, cookies, session storage ?
+localStorage: Dung lượng ~5MB, Tồn tại vĩnh viễn, Không được truy cập từ server.
+
+sessionStorage: Dung lượng ~5MB, Tồn tại đến khi đóng tab, Không được truy cập từ server.
+
+cookies: Dung lượng ~4KB, Tồn tại tùy thuộc vào thời gian expired, Được truy cập từ server.
+
+Xử lý bất đồng bộ ( Cách hoạt động, cú pháp của Promise, Callback, Async await )
+Sử dụng Callback, Promise, Async await
+
+#Khái niệm Hoisting
+Di chuyển phần khai báo biến lên đầu.
+
+var được hoist nhưng khởi tạo là undefined.
+
+let/const cũng được hoist nhưng không thể truy cập trước khi khai báo.
+
+#Những thay đổi ở ES6
+let, const
+
+Arrow function
+
+Template literal
+
+Destructuring
+
+Default parameters
+
+Spread/rest operator
+
+Classes
+
+Modules (import/export)
+
+Promises
+
+#Truthy, Falsy
+Falsy: false, 0, '', null, undefined, NaN
+Truthy: mọi thứ còn lại
+
+#Bất đồng bộ và đồng bộ trong Javascript là gì ? Javascript là ngôn ngữ lập trình đồng bộ hay bất đồng bộ ?
+#Tham trị, tham chiếu
+Tham trị (primitive): number, string, boolean → copy giá trị.
+
+Tham chiếu (reference): object, array, function → cùng tham chiếu tới 1 vùng nhớ.
+
+#ReactJS
+ReactJS là gì? Tại sao sử dụng ReactJS
+Thư viện JavaScript để xây dựng UI. Component-based, declarative, sử dụng Virtual DOM để nâng cao hiệu suất.
+
+Trình bày life cycle của ReactJS
+Gồm 4 giai đoạn: Initial > Mount > Update > Unmount
+
+useEffect có thể dùng trong các giai đoạn nào của life cycle?
+useEffect(() => {}, []): // tương đương Mount
+
+useEffect(() => { return () => {} }, []): // tương đương Unmount
+
+useEffect(() => {}, [deps]): // tương đương Update
+
+#Virtual DOM
+Trong React, mỗi phần giao diện người dùng là một Component. Khi trạng thái của một Component thay đổi, React sẽ cập nhật DOM ảo. Khi DOM ảo đã được cập nhật, React sau đó sẽ so sánh phiên bản hiện tại của DOM ảo với phiên bản trước của DOM ảo. Quá trình này được gọi là "diffing".
+
+Khi React biết đối tượng DOM ảo nào đã thay đổi, thì React chỉ cập nhật các đối tượng đó trong DOM thực. Điều này làm cho hiệu suất tốt hơn nhiều so với thao tác trực tiếp với DOM thực. Do đó làm cho React nổi bật như một thư viện JavaScript hiệu suất cao.
+
+#Key là gì?
+Key sẽ được dùng khi sử dụng hàm map để render một danh sách, key có tác dụng giúp cho React so sánh giữa trạng thái cũ và mới của các thành phần trong danh sách để đưa ra quyết định thành phần nào được re-render.
+
+#Trình bày một số cách để tối ưu performance
+Để tối ưu performance cần tránh những lần re-render không cần thiết, có một số cách để tránh re-render như sau:
+
+Khi sử dụng useEffect cần Kiểm tra chặt chẽ dependency, sử dụng eventListenner cần phải có clean up.
+Sử dụng useMemo và useCallback để hạn chế khởi tạo những tác vụ phức tạp.
+Sử dụng memo để hạn chế re-render không cần thiết
+Sử dụng key khi render list
+Sử dụng useRef để lưu value trong một vài trường hợp không cần re-render
+Có thể gán trực tiếp state mà không thông qua hàm setState được không?
+Có thể gán trực tiếp state bằng giá trị mới, nhưng component chỉ re-render khi thay đổi state thông qua hàm setState
+
+#Phân biệt state và props
+State: quản lý các trạng thái của component
+
+Props: được dùng để chia sẽ các trạng thái của component này cho các component khác
+
+Khi nào component re-render
+Khi các state của component thay đổi
+
+Khi component cha re-render
+
+Cách ngăn component re-render khi không có sự thay đổi
+Sử dụng memo, useCallback, useMemo.
+
+Trình bày cách thức hoạt động của useEffect?
+Chạy sau khi render
+
+Có thể cleanup bằng cách return function
+
+useEffect chạy lại bao nhiêu lần sẽ phụ thuộc vào các phần tử trong dependency array.
+
+#Custom hook là gì ?
+Hàm bắt đầu bằng use
+
+Dùng để tái sử dụng logic React (thường dùng useState, useEffect, etc.)
+
+#Phân biệt useCallback và useMemo và memo
+Đều được sử dụng để hạn chế số lần render không cần thiết, ngoài ra sẽ có sự khác biệt cho từng trường hợp sử dụng:
+
+useMemo: Ghi nhớ giá trị, Trả về value
+
+useCallback: Ghi nhớ function, Trả về function
+
+memo: Ghi nhớ component, Trả về component
+
+#Có nên sử dụng useCallback và useMemo trong mọi trường hợp hay không
+Không, chỉ dùng khi performance thực sự bị ảnh hưởng re-render nhiều lần không cần thiết, tác vụ nặng → tránh phức tạp code không cần thiết.
+
+#Tại sao cần state management
+Dễ quản lý dữ liệu dùng chung
+
+Tránh prop-drilling
+
+Dễ debug, maintain
+
+#Phân biệt Context API so với Redux
+Context API: Truyền data giữa component, Cấu hình và cách sử dụng đơn giản, Không có devtool mạnh, Phù hợp cho dự án nhỏ và trung bình. Redux: Quản lý state toàn cục, Cấu hình và cách sử dụng rõ ràng hơn, Có devtool mạnh, Phù hợp cho dự án trung bình và lớn.
+
+#Code splitting
+Kỹ thuật chia nhỏ code để tải từng phần khi cần
+
+Dùng React.lazy + Suspense để lazy load component
+
+#React là CSR hay SSR
+React bản chất là CSR. Tuy nhiên các phiên bản mới gần đây đã xuất hiện Server Component
+
+Có thể SSR thông qua Next.js.
+
+Trình bày một số design pattern trong React
+Container-Presenter pattern
+
+#Hooks pattern
+Compound components
+
+Render props
+
+HOC (Higher-Order Components)
+
+Bạn có thể tham khảo một số pattern phổ biến tại https://reactpatterns.com/
+
+#Design Pattern là gì
+Design Pattern (Mẫu thiết kế) là những giải pháp đã được kiểm chứng để giải quyết các vấn đề lặp đi lặp lại trong thiết kế và phát triển phần mềm.
