@@ -1,0 +1,135 @@
+#1. ReactJs là gì? ReactJs hoạt động như thế nào?
+
+#2. Ưu và nhược điểm của ReactJs?
+dễ dàng xây dụng app
+dễ dàng trong việc tái sự dụng
+dễ dàng trong việc debug do cơ chế one way binding tức nhiệu component con nằm trong component mẹ
+
+#3. Virtual DOM là gì ?
+React giữ lại 1 phần của DOM thật và khi trạng thái thay đổi trên DOM ảo thì cập nhật phần đó vào DOM thật chứ không thay đổi toàn bộ cả cây DOM
+
+#4. Single Page Application là gì ?
+
+#5. Sự khác nhau giữa class component và functional component ?
+
+#6. Hãy trình bày những giai đoạn có trong life cycle của một component ?
+Mounting - khời tạo
+Updating - cập nhật
+Unmounting - kết thúc
+
+mỗi giai đoạn ánh xa với 1 useEffect
+Mounting - useEffect(() => {} , [])
+Updating - useEffect(() => {} , [dependencies])
+Unmounting - useEffect(() => { return cleanup function } , [dependencies]), useEffect(() => { return cleanup function } , [])
+
+#7. Những điều kiện nào làm cho một component rerender ?
+khi mà props hoặc state 
+#8. JSX là gì ? Browser có thể đọc được JSX hay không ?
+nó là cú pháp mở rộng của JS kết hợp với HTML
+Browser không thể nào đọc được jsx mà cần phải chuyển đổi jsx về js thông qua Babel
+#9. Stateless component và Statefull component khác nhau thế nào ?
+stateless là component không sử dụng state mà không thể tự cập nhật lại chính nó
+Statefull là component sử dụng state mà mỗi khi state thay đổi thì component sẽ re-render tức là nó tự thay đổi được
+#11. Controlled component và Uncontrolled component khác nhau như thế nào ?
+Controlled là component nhận giá trị props từ component cha truyền xuống và nó sẽ bị thay đổi từ component
+Uncontrolled là component không nhận giá trị từ component cha mà nó sẽ tự xử lý trong bản thân nó từ việc tự thay đổi 
+#12. Khi cần hiển thị một list component ra giao diện bạn làm như thế nào ?
+sử dụng hàm map để chạy qua từng giá trị trong danh sách và trả về kết quả làm React Node
+
+#13. Tại sao mỗi thành phần trong list cần có key ? Keys được dùng để làm gì ?
+key là một thành phần quan trọng vì nó dùng để phân biệt phần từ này với phần từ khác
+khi render thì việc cập nhật giá trị cho key là cần thiết và key nên là giá trị duy nhất không nên bị trùng với các key của phần từ khác
+
+#15. React Hook là gì ? Hãy kể tên những hooks mà bạn biết ? Các ưu điểm của React Hooks ?
+React Hook là 1 chức năng của react giúp chúng ta quản lý các tính năng quản lý trạng thái và quản lý vòng đời của component
+
+#17. Props là gì ?
+Props hay còn được gọi là Properties là giá trị truyền từ component cha xuống component con
+
+#18. Component con có thể thay đổi trực tiếp giá trị props của component cha không ?
+component con không thể thay đổi giá trị props từ component chả vì React chạy theo cơ chế one way data và dữ liệu props này là read only
+
+#19. Nếu component cha truyền một props mà component con không sử dụng thù chuyện gì sẽ xảy ra ?
+thì khống có gì xẩy ra cả và ứng dụng vẫn hoạt động bình Thường
+nhungwg mà không nên làm như vậy vì trong tương lại việc nâng cấp sẽ trở nên khó khăn cho người đọc
+
+#20. Props có thể truyền qua lại giữa 2 component cùng cấp hay không ?
+props không thể truyền qua lại giữa 2 component cùng cấp mà chỉ có thể truyền từ cha xuống theo có chế one way binding
+
+#21. State là gì ? Tại sao phải gọi setState thay vì trực tiếp thay đổi state ?
+state là một đối tượng lưu trữ trạng thái của 1 component
+Phải gọi setState thay vì trực tiếp thay đổi statevì Nếu bạn cố gắng thay đổi một state của component trực tiếp, React sẽ không thể biết được khi nào nó cần phải re-render component. Bằng cách sử dụng phương thức setState(), React có thể cập nhật component của UI.
+#22. Làm sao để thay đổi giá trị của state mà không làm component rerender ?
+bạn có thể sử dụng ref để gắn giá trị trực tiếp cho state và vì sao mà nó gán giá trị mà không re-render vì nó chọc trực tiếp vào cây dom
+
+#23. Khi setState một giá trị bằng giá trị cũ thì component có rerender lại không ?
+Trong React, khi bạn gọi setState với một giá trị mới giống hệt với giá trị hiện tại, component sẽ không re-render lại. React tối ưu hóa quá trình render để chỉ re-render component khi trạng thái hoặc props của nó thực sự thay đổi. Khi setState được gọi, React sẽ so sánh giá trị mới với giá trị hiện tại. Nếu hai giá trị này là giống nhau, React sẽ bỏ qua việc re-render để tăng hiệu suất.
+
+#24. Khi setState, giá trị của state có được cập nhật ngay lập tức hay không ?
+không mà React sẽ xử lý toàn bộ các tác vụ cho đến khi xử lý xong thì sẽ tiến hành re-render
+
+#25. Làm sao để chia sẻ state giữa các components ?
+chúng ta có thể sử dụng state làm props từ cha truyền xuống hoặc có thể xử dụng useContext, useSelector từ re-dux
+
+#26. Sự khác nhau giữa state và props ?
+state là giá trị mà có thể thay đổi được còn props thì không
+state chứa giá trị về component còn props chứa giá trị mà giá trị từ cha truyền xuống
+state không có trong stateless component còn props thì có
+state là giá trị mà component con không truy cập vào được còn props thì có
+
+#27. Refs là gì ? Sự khác nhau giữa refs và state ?
+Refs là hook của React. Ref nhận các giá trị tham chiếu như làm React Node hay một giá trị cụ thể như số hoặc là String
+
+ref tác động trực tiếp vào dom thật khi thay đổi giá trị không bị re-render lại component
+state được sử dụng để quản lý dữ liệu việc thay đổi state thông qua setState thì sẽ gây ảnh hương là re-render lại component để cập nhật UI
+
+#29. Làm sao để component cha có thể gọi hàm của component con ? (useImperativeHandle)
+bạn có thể dụng useRef kết hợp forwardRef để nhận ref từ cha truyền xuống sau đó dùng useImperativeHandle để khởi tạo các hàm ở component sau đó từ ref ở component cha thì ta có chọc và các hàm ở component con
+
+#30. useEffect là gì ? Có những cách dùng useEffect nào ?
+useEffect là hook có tác dụng thực thi các tác vụ side effect như call api, các event handle
+
+sử dụng như call api
+
+#31. Cần lưu ý gì khi sử dụng dependencies ?
+dependencies nên là sử dụng 1 cách hợp lý để callback được xử lý không bị lãng phí
+
+#32. Cơ chế so sánh các dependencies của useEffect là gì ?
+React sử dụng một cơ chế so sánh đặc biệt để xác định xem liệu trình useEffect có nên được chạy lại hay không dựa trên dependencies array comparison hay dependencies comparison
+Cơ chế so sánh làL
+referential equality để so sánh dependencies trong mảng với trị của dependencies ở lần render trước nếu giá trị dependencies không thay đổi thì effect không cần chạy lại
+
+#33. Side effect là gì ? Kể tên một số side effects bạn thường xử lý ?
+side effect là các tác vụ từ phía userr như call api , event handle
+
+    #34. Clean up function của useEffect có chức năng gì ? Khi nào cần sử dụng ? Ví dụ.
+clean up là hàm dọn dẹp của useEffect dùng để xử lý sau khi mà component bị hủy hay chạy lại effect điều này giúp vấn đề về bộ nhớ được đảm bảo
+
+#35. useCallback và useMemo là gì ? Giống và khác nhau thế nào ?
+giống là đều là hook sinh ra dùng để tính toán lại mỗi khi mà dependencies thay đổi tránh lãng phí bộ nhớ của máy
+khác nhau là
+memo trả về kết quả giá trị của callback 
+callback trả về callback
+
+#37. React - router - dom là gì ? Tại sao phải sử dụng react - router - dom ?
+#40. Có những cách nào để chuyển trang bằng react-router-dom?
+Sử dụng <Link>: component <Link> giúp tạo ra các liên kết dẫn đến các route khác mà không làm tải lại trang.
+Sử dụng useNavigate
+Sử dụng useHistory
+Sử dụng history Prop trong component
+#41. Private route là gì? Hãy mô tả cách triển khai?
+
+#42. Làm sao để xử lý khi có lỗi 404 page not found?
+#43. Làm sao để truyền và lấy được params thông qua URL?
+sử dụng useParams từ thư viện react-route-dom
+
+#44. Props drilling là gì?
+- Prop drilling là điều xảy ra khi bạn cần truyền dữ liệu từ một component cha xuống một component thấp hơn trong cây component, drilling - khoan vào các component khác mà các component đấy có thể không cần giá trị props, trong khi chỉ một vài component là cần thôi.
+- Thỉnh thoảng vấn đề prop drilling có thể được phòng tránh bằng việc refactor component, tránh việc chia component thành nhỏ hơn và giữ các state chung vào trong component cha chung gần nhất. Với việc bạn cần chia sẻ state giữa các component mà không phụ thuộc vào vị trí xa hay gần trong cây component, bạn có thể sử dụng React Context API hay thư viện quản lý state tập trung ví dụ như Redux.
+#45. Redux là gì? Mô hình hoạt động của redux như thế nào?
+#46. Sự khác nhau giữa Action và Reducer là gì?
+#47. Làm sao để dispatch một Action?
+#48. Middleware là gì? Khi nào cần sử dụng middleware?
+#49. Làm sao để truy xuất dữ liệu từ store?
+#50. Context API là gì? Cách thức hoạt động của Context API như thế nào? Context API có thể thay thế được Redux được không?
+#51. So sánh Context API và Redux
