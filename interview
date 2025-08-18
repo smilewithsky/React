@@ -1,173 +1,277 @@
-#Có những loại biến nào, sự khác nhau của chúng
-Var, Let: có thể reassigned
+#1. ReactJs là gì? ReactJs hoạt động như thế nào?
+
+#2. Ưu và nhược điểm của ReactJs?
 
-Const: không thể reassigned
+#3. Virtual DOM là gì ?
+Là một phiên bảo ảo của DOM thật , được react dùng để quản lý giao diện nó giống như 1 bản sao nhưng nhẹ hơn trong bộ nhớ, lưu trữ cấu trúc của components, khi có sử thay đổi như state hoặc props thì React sẽ so sánh Virtal DOM mới với bản cũ tính toán sự khác biệt rồi chỉ cập nhật phần khác biệt đó lên DOM thật thôi. Cách này giúp tăng tốc độ và giảm thao tác nặng trên DOM thực
 
-#Trình bày các loại scope
-Global: Bao gồm biến var, const, let được khai báo ở ngoài cùng file javascript.
+#4. Single Page Application là gì?
+Single Page Application (SPA) là ứng dụng web chỉ có một trang HTML duy nhất được tải về từ server. Khi người dùng tương tác hoặc chuyển trang, SPA sẽ chỉ cập nhật phần nội dung cần thiết trên trang bằng JavaScript mà không cần tải lại toàn bộ trang từ server. Nhờ đó, trải nghiệm người dùng mượt mà hơn, tốc độ phản hồi nhanh hơn và giảm tải cho server.
 
-Block code: Bao gồm biến let, const được khai báo trong block code như: if else, switch case sẽ có phạm vi block code, trường hợp var được khai báo trong block code sẽ có phạm vi global.
+**Đặc điểm:**
+- Chỉ tải một lần file HTML chính, sau đó mọi thao tác đều xử lý phía client.
+- Chuyển trang, cập nhật dữ liệu không cần reload lại trang.
+- Thường sử dụng các framework như React, Angular, Vue để xây dựng.
 
-Local: Còn được gọi là phạm vi hàm, bao gồm let, const, var hoặc hàm được khai báo trong một hàm sẽ tạo ra phạm vi hàm
+**Ưu điểm:**  
+- Trải nghiệm người dùng tốt, chuyển trang nhanh.
+- Giảm tải cho server, tiết kiệm băng thông.
 
-#Khái niệm Closure
-Closure là một function ghi nhớ biến ở phạm vi bên ngoài của nó, kể cả sau khi phạm vi đó đã bị giải phóng.
+**Nhược điểm:**  
+- SEO khó khăn hơn so với Multi Page Application.
+- Ứng dụng phức tạp hơn về mặt quản lý
+#5. Sự khác nhau giữa class component và functional component ?
+| Tiêu chí                | Class Component                                                 | Functional Component                        |
+|-------------------------|-----------------------------------------------------------------|---------------------------------------------|
+| Cú pháp                 | Sử dụng class, kế thừa từ React.Component                       | Sử dụng function (ES6 function hoặc arrow)  |
+| State                   | Quản lý state bằng `this.state` và `this.setState`              | Quản lý state bằng hook `useState`          |
+| Lifecycle methods       | Có các phương thức vòng đời (componentDidMount, ...)            | Dùng hook `useEffect` để thay thế           |
+| Từ khóa `this`          | Phải sử dụng `this` để truy cập props, state                    | Không cần dùng `this`                       |
+| Độ phức tạp             | Cú pháp dài, phức tạp hơn                                       | Ngắn gọn, dễ đọc, dễ bảo trì                |
+| Hiệu suất               | Tương đương, nhưng functional component dễ tối ưu hơn với hooks | Dễ tối ưu hơn với hooks                     |
+| Hỗ trợ hook             | Không hỗ trợ                                                    | Hỗ trợ sử dụng các React Hook               |
 
-function outer() {
-  let count = 0;
-  return function () {
-    return ++count;
-  };
-}
-const counter = outer();
+**Tóm lại:**  
+- Functional component ngày nay được ưu tiên sử dụng nhờ cú pháp đơn giản, dễ bảo trì và có thể sử dụng hooks để quản lý state, side effect, v.v.
+- Class component chủ yếu dùng trong các dự án cũ hoặc khi cần các lifecycle method truyền
 
-#Trình bày sự khác nhau giữa local stogare, cookies, session storage ?
-localStorage: Dung lượng ~5MB, Tồn tại vĩnh viễn, Không được truy cập từ server.
+#6. Hãy trình bày những giai đoạn có trong life cycle của một component ?
+1 Mounting - khởi tạo
+2 Updating - Cập Nhật
+3 Unmounting - Kết thúc
+
+Ánh xa với useEffect với từng giai đonạ là
+Khởi tạo useEffect(() => {} , [])
+Update useEffect( () => {} , [deps] )
+unmount useEffect( () => { return () => {} } , [] ), useEffect( () => { return () => {} } , [deps] )
+
+#7. Những điều kiện nào làm cho một component rerender ?
+Điều kiện làm cho 1 component re-render là khi mà props hoặc state của component đó bị thay đổi
+
+#8. JSX là gì ? Browser có thể đọc được JSX hay không ?
+
+#9. Stateless component và Statefull component khác nhau thế nào ?
+StateLess component là component không sử dụng state và không thể tự cập nhật lại bản thân chính nó ( stateless chứa props )
+
+#11. Controlled component và Uncontrolled component khác nhau như thế nào ?
+
+#12. Khi cần hiển thị một list component ra giao diện bạn làm như thế nào ?
+sử dụng hàm map để render list và nhớ add thêm key cho mỗi phần tử để react nhận ra nhé
+
+#13. Tại sao mỗi thành phần trong list cần có key ? Keys được dùng để làm gì ?
+Key là một thành phần quan trọng vì nó dùng để phân biệt các phần tử trong list
+Khi render 1 list thì việc cung cấp giá trị cho key là cần thiết và nên là duy nhất vì khi render thì react sẽ sử dụng key để xác định các phần tử nào bị thay đổi, được thêm vào hoặc bị xóa. Nếu không có key duy nhất, React sẽ không thể xác định chính xác các phần tử nào cần cập nhật, dẫn đến hiệu suất kém
+
+#15. React Hook là gì ? Hãy kể tên những hooks mà bạn biết ? Các ưu điểm của React Hooks ?
+React Hooks là các hàm đặc biệt cho phép bạn sử dụng state và các tính năng khác của React trong functional component. 
+
+Một số hooks phổ biến: useState, useEffect, useContext, useRef, useMemo, useCallback, useReducer, useImperativeHandle, useLayoutEffect, useDebugValue.
+#17. Props là gì ?
+Props hay còn được gọi là properties là giá trị truyền từ component cha xuống component con
+và props là immuable tức là không thể thay đổi được giá trị của nó từ component con
 
-sessionStorage: Dung lượng ~5MB, Tồn tại đến khi đóng tab, Không được truy cập từ server.
+#18. Component con có thể thay đổi trực tiếp giá trị props của component cha không ?
+Component con không thể thay đổi được trực tiếp giá trị props từ component cha truyền xuống vì nó là immuable tức là không thể thay đổi được mà chỉ đọc giá trị thôi
+Nhưng mà có thể thay đổi thông qua hàm callback mà component cha truyền xuống cho component con
 
-cookies: Dung lượng ~4KB, Tồn tại tùy thuộc vào thời gian expired, Được truy cập từ server.
+#19. Nếu component cha truyền một props mà component con không sử dụng thù chuyện gì sẽ xảy ra ?
+Không có gì xẩy ra cả nhưng mà không nên làm vậy vì nó sẽ làm rối code và khó bảo trì trong tương lai, nếu mà props nhỏ thì không sao nhưng mà lớn thì sẽ ảnh hưởng đến hiệu suất của ứng dụng
 
-Xử lý bất đồng bộ ( Cách hoạt động, cú pháp của Promise, Callback, Async await )
-Sử dụng Callback, Promise, Async await
+#20. Props có thể truyền qua lại giữa 2 component cùng cấp hay không ?
+Không được vì props chỉ có thể truyền từ component cha xuống component con theo cơ chế one way binding thôi để có thể truyền qua lại giữa 2 component thì có thể dùng component cha bọc 2 component đó lại và truyền props thôi cũng có thể dùng Redux hoặc context api để chia sẻ state giữa các component mà không cần phải truyền qua từng cấp động
+#21. State là gì ? Tại sao phải gọi setState thay vì trực tiếp thay đổi state ?
+
+#22. Làm sao để thay đổi giá trị của state mà không làm component rerender ?
+Bạn có thể sử dụng ref để gán giá trị nhưng mà
+Lưu ý:
+Chỉ dùng ref khi giá trị không ảnh hưởng đến UI, vì ref không kích hoạt render.
+Nếu UI cần phản ánh giá trị, bạn vẫn phải dùng state (useState/setState).
+Cẩn thận với logic phức tạp, vì ref không đảm bảo đồng bộ như state.
+
+#23. Khi setState một giá trị bằng giá trị cũ thì component có rerender lại không ?
+Trong React hiện tại Khi bạn gọi setState với một giá trị mới giống hệt giá trị cũ thì thì component sẽ không re-render lại React đã tối ưu hóa quá trình render để chị khi props hoặc state của nó thực sự thay đổi khi setState được gọi. Nếu 2 giá trị này giống nhau thì React sẽ bỏ qua quá trình render để tăng hiệu suất
 
-#Khái niệm Hoisting
-Di chuyển phần khai báo biến lên đầu.
+#24. Khi setState, giá trị của state có được cập nhật ngay lập tức hay không ?
+State không được cập nhật ngay lập tức. React sẽ batch các cập nhật state và thực hiện cập nhật khi component re-render. Giá trị mới của state chỉ có sau khi render lại.
 
-var được hoist nhưng khởi tạo là undefined.
+#25. Làm sao để chia sẻ state giữa các components ?
+Bạn có thể sử dụng Props để truyền từ cha xuống con hoặc sử dụng Context API để chia sẻ state giữa các component mà không cần phải truyền qua từng cấp
+
+#26. Sự khác nhau giữa state và props ?
+State là đối tượng của component chứa giá trị của component đó
+Và staet có thể thay đổi được giá trị của nó thông qua setState và khi giá trị của state thay đổi thì component sẽ re-render lại
+
+Props là giá trị được truyền từ component cha xuống component con và props là immtable tức là không thể thay đổi được mà chỉ đọc giá trị thôi
 
-let/const cũng được hoist nhưng không thể truy cập trước khi khai báo.
-
-#Những thay đổi ở ES6
-let, const
-
-Arrow function
-
-Template literal
-
-Destructuring
-
-Default parameters
-
-Spread/rest operator
-
-Classes
-
-Modules (import/export)
-
-Promises
-
-#Truthy, Falsy
-Falsy: false, 0, '', null, undefined, NaN
-Truthy: mọi thứ còn lại
-
-#Bất đồng bộ và đồng bộ trong Javascript là gì ? Javascript là ngôn ngữ lập trình đồng bộ hay bất đồng bộ ?
-#Tham trị, tham chiếu
-Tham trị (primitive): number, string, boolean → copy giá trị.
-
-Tham chiếu (reference): object, array, function → cùng tham chiếu tới 1 vùng nhớ.
-
-#ReactJS
-ReactJS là gì? Tại sao sử dụng ReactJS
-Thư viện JavaScript để xây dựng UI. Component-based, declarative, sử dụng Virtual DOM để nâng cao hiệu suất.
-
-Trình bày life cycle của ReactJS
-Gồm 4 giai đoạn: Initial > Mount > Update > Unmount
-
-useEffect có thể dùng trong các giai đoạn nào của life cycle?
-useEffect(() => {}, []): // tương đương Mount
-
-useEffect(() => { return () => {} }, []): // tương đương Unmount
-
-useEffect(() => {}, [deps]): // tương đương Update
-
-#Virtual DOM
-Trong React, mỗi phần giao diện người dùng là một Component. Khi trạng thái của một Component thay đổi, React sẽ cập nhật DOM ảo. Khi DOM ảo đã được cập nhật, React sau đó sẽ so sánh phiên bản hiện tại của DOM ảo với phiên bản trước của DOM ảo. Quá trình này được gọi là "diffing".
-
-Khi React biết đối tượng DOM ảo nào đã thay đổi, thì React chỉ cập nhật các đối tượng đó trong DOM thực. Điều này làm cho hiệu suất tốt hơn nhiều so với thao tác trực tiếp với DOM thực. Do đó làm cho React nổi bật như một thư viện JavaScript hiệu suất cao.
-
-#Key là gì?
-Key sẽ được dùng khi sử dụng hàm map để render một danh sách, key có tác dụng giúp cho React so sánh giữa trạng thái cũ và mới của các thành phần trong danh sách để đưa ra quyết định thành phần nào được re-render.
-
-#Trình bày một số cách để tối ưu performance
-Để tối ưu performance cần tránh những lần re-render không cần thiết, có một số cách để tránh re-render như sau:
-
-Khi sử dụng useEffect cần Kiểm tra chặt chẽ dependency, sử dụng eventListenner cần phải có clean up.
-Sử dụng useMemo và useCallback để hạn chế khởi tạo những tác vụ phức tạp.
-Sử dụng memo để hạn chế re-render không cần thiết
-Sử dụng key khi render list
-Sử dụng useRef để lưu value trong một vài trường hợp không cần re-render
-Có thể gán trực tiếp state mà không thông qua hàm setState được không?
-Có thể gán trực tiếp state bằng giá trị mới, nhưng component chỉ re-render khi thay đổi state thông qua hàm setState
-
-#Phân biệt state và props
-State: quản lý các trạng thái của component
-
-Props: được dùng để chia sẽ các trạng thái của component này cho các component khác
-
-Khi nào component re-render
-Khi các state của component thay đổi
-
-Khi component cha re-render
-
-Cách ngăn component re-render khi không có sự thay đổi
-Sử dụng memo, useCallback, useMemo.
-
-Trình bày cách thức hoạt động của useEffect?
-Chạy sau khi render
-
-Có thể cleanup bằng cách return function
-
-useEffect chạy lại bao nhiêu lần sẽ phụ thuộc vào các phần tử trong dependency array.
-
-#Custom hook là gì ?
-Hàm bắt đầu bằng use
-
-Dùng để tái sử dụng logic React (thường dùng useState, useEffect, etc.)
-
-#Phân biệt useCallback và useMemo và memo
-Đều được sử dụng để hạn chế số lần render không cần thiết, ngoài ra sẽ có sự khác biệt cho từng trường hợp sử dụng:
-
-useMemo: Ghi nhớ giá trị, Trả về value
-
-useCallback: Ghi nhớ function, Trả về function
-
-memo: Ghi nhớ component, Trả về component
-
-#Có nên sử dụng useCallback và useMemo trong mọi trường hợp hay không
-Không, chỉ dùng khi performance thực sự bị ảnh hưởng re-render nhiều lần không cần thiết, tác vụ nặng → tránh phức tạp code không cần thiết.
-
-#Tại sao cần state management
-Dễ quản lý dữ liệu dùng chung
-
-Tránh prop-drilling
-
-Dễ debug, maintain
-
-#Phân biệt Context API so với Redux
-Context API: Truyền data giữa component, Cấu hình và cách sử dụng đơn giản, Không có devtool mạnh, Phù hợp cho dự án nhỏ và trung bình. Redux: Quản lý state toàn cục, Cấu hình và cách sử dụng rõ ràng hơn, Có devtool mạnh, Phù hợp cho dự án trung bình và lớn.
-
-#Code splitting
-Kỹ thuật chia nhỏ code để tải từng phần khi cần
-
-Dùng React.lazy + Suspense để lazy load component
-
-#React là CSR hay SSR
-React bản chất là CSR. Tuy nhiên các phiên bản mới gần đây đã xuất hiện Server Component
-
-Có thể SSR thông qua Next.js.
-
-Trình bày một số design pattern trong React
-Container-Presenter pattern
-
-#Hooks pattern
-Compound components
-
-Render props
-
-HOC (Higher-Order Components)
-
-Bạn có thể tham khảo một số pattern phổ biến tại https://reactpatterns.com/
-
-#Design Pattern là gì
-Design Pattern (Mẫu thiết kế) là những giải pháp đã được kiểm chứng để giải quyết các vấn đề lặp đi lặp lại trong thiết kế và phát triển phần mềm.
+StateLessComponent là component có thể chứa props nhưng khong thể chứa state và không thể tự cập nhật lại bản thân chính nó
+StateFullComponent là component có thể chứa state và props và có thể tự cập nhật lại bản
+
+#27. Refs là gì ? Sự khác nhau giữa refs và state ?
+Refs trong React là một cách để truy cập và lưu trữ giá trị hoặc tham chiếu đến DOM elements/components mà không gây rerender.
+Sự khác nhau giữa refs và state:
+
+Rerender:
+State: Thay đổi state (qua setState/useState) kích hoạt rerender.
+Refs: Thay đổi ref (ref.current) không gây rerender.
+
+Mục đích:
+State: Quản lý dữ liệu ảnh hưởng đến UI, đảm bảo đồng bộ với render.
+Refs: Lưu giá trị không liên quan đến UI (như DOM node, timer ID) hoặc giá trị tạm thời.
+
+Cơ chế quản lý:
+State: Được React quản lý, có thể theo dõi qua DevTools, tuân theo lifecycle.
+Refs: Thay đổi trực tiếp, không qua React, khó debug hơn.
+
+Khả năng đồng bộ:
+State: Đảm bảo UI và dữ liệu đồng bộ, phù hợp với logic hiển thị.
+Refs: Có thể gây bất đồng bộ nếu dùng sai cho dữ liệu UI.
+#29. Làm sao để component cha có thể gọi hàm của component con ? (useImperativeHandle)
+
+#30. useEffect là gì ? Có những cách dùng useEffect nào ?
+useEffect là một hook trong React cho phép bạn sử dụng các tác vụ phụ ( side effects ) trong component function. Nó được sử dụng để thực hiện các tác vụ như gọi API, đăng ký sự kiện, hoặc cập nhật DOM sau khi component đã render.
+Có hai cách sử dụng useEffect:
+1. useEffect(() => { /* code */ }, [dependencies]): Chạy code mỗi khi dependencies thay đổi.
+2. useEffect(() => { /* code */ }, []): Chạy code chỉ một lần khi component được mount (lần đầu tiên render).
+#31. Cần lưu ý gì khi sử dụng dependencies ?
+
+#32. Cơ chế so sánh các dependencies của useEffect là gì?
+React sử dụng cơ chế **so sánh nông (shallow comparison)** cho các dependencies trong mảng phụ thuộc (`[deps]`) của useEffect. Nghĩa là, React sẽ kiểm tra từng phần tử trong mảng dependencies bằng phép so sánh === (so sánh tham chiếu đối với object, array, function và so sánh giá trị đối với kiểu nguyên thủy).
+
+- Nếu tất cả các giá trị trong mảng dependencies đều giữ nguyên (không thay đổi tham chiếu hoặc giá trị), useEffect sẽ không chạy lại.
+- Nếu bất kỳ dependency nào thay đổi (tham chiếu mới hoặc giá trị mới), useEffect sẽ được kích hoạt lại.
+
+**Lưu ý:**  
+Với object, array, function mới được tạo ở mỗi lần render, tham chiếu sẽ khác nên useEffect sẽ luôn chạy lại, trừ khi bạn dùng useMemo hoặc useCallback để giữ tham chiếu ổn định.
+#33. Side effect là gì ? Kể tên một số side effects bạn thường xử lý ?
+"side effect" (hiệu ứng phụ) đề cập đến các thay đổi không mong muốn hay không dự kiến mà một hàm hay một phương thức có thể gây ra. Trong React, các side effects thường xuất hiện khi chúng ta thực hiện các tác vụ không thuần túy về tính toán, như tương tác với bên ngoài như API, thay đổi DOM, hoặc làm thay đổi trạng thái toàn cục.
+Có 2 loại side effect chính là:
+Effects không cần Cleanup
+Effects cần phải Cleanup
+
+#34. Clean up function của useEffect có chức năng gì ? Khi nào cần sử dụng ? Ví dụ.
+
+#35. useCallback và useMemo là gì ? Giống và khác nhau thế nào ?
+useCallback và useMemo là 2 Hook đều có có chung chức năng là tối ưu hiệu xuất app mỗi khi dependencies thay đổi thì nó sẽ tính toán lại logic 
+nhưng sự khác nhau là 
+useCallBack trả về hàm
+useMemo trả về dữ liệu
+
+#37. React - router - dom là gì ? Tại sao phải sử dụng react - router - dom ?
+
+#40. Có những cách nào để chuyển trang bằng react-router-dom?
+sử dụng useNavigater 
+sử dụng Link
+#41. Private route là gì? Hãy mô tả cách triển khai?
+
+#42. Làm sao để xử lý khi có lỗi 404 page not found?
+Sử dụng React Router DOM để tạo ra một route không có path nào đó và hiển thị ra 1 component 404 page not found. Bạn có thể sử dụng `<Route path="*" component={NotFound} />` để bắt tất cả các route không khớp và hiển thị trang Not Found.
+
+#43. Làm sao để truyền và lấy được params thông qua URL?
+Sử dụng useParam từ thư viện react-router-dom. Bạn có thể định nghĩa route với tham số như `/user/:id` và sau đó sử dụng `const { id } = useParams();` trong component để lấy giá trị của `id` từ URL.
+
+#44. Props drilling là gì?
+là hiện tượng mà khi bạn truyền props từ component cha xuống component con quá nhiều cấp mà không cần thiết dẫn đến việc các component con không sử dụng props đó vẫn phải nhận props từ cha. Dẫn đến code trở nên phức tạp và khó bảo trì. Các giải quyết là dùng context api hoặc redux để quán lý state toàn cục thay vì truyền props qua từng cấp.
+
+#45. Redux là gì? Mô hình hoạt động của redux như thế nào?
+**Redux** là một thư viện quản lý state (trạng thái) toàn cục cho các ứng dụng JavaScript, đặc biệt phổ biến với React. Redux giúp lưu trữ và quản lý trạng thái của toàn bộ ứng dụng tại một nơi duy nhất (store), giúp việc chia sẻ dữ liệu giữa các component trở nên dễ dàng, kiểm soát luồng dữ liệu rõ ràng và dễ debug.
+
+**Mô hình hoạt động của Redux:**
+Redux hoạt động dựa trên 3 nguyên tắc chính:
+1. **Store**: Nơi lưu trữ toàn bộ state của ứng dụng.
+2. **Action**: Là các object mô tả hành động muốn thay đổi state (thường có thuộc tính `type` và dữ liệu kèm theo).
+3. **Reducer**: Là các hàm nhận vào state hiện tại và action, trả về state mới.
+
+**Luồng hoạt động:**
+- Component gửi một **action** (dispatch action) khi có sự kiện (ví dụ: click, nhập dữ liệu).
+- **Reducer** nhận action và state hiện tại, xử lý logic và trả về state mới.
+- **Store** cập nhật state mới, các component liên quan sẽ tự động nhận dữ liệu mới và re-render.
+
+#46. Sự khác nhau giữa Action và Reducer là gì?
+
+#47. Làm sao để dispatch một Action?
+Để dispatch một Action trong Redux, cần sử dụng hàm dispatch được cung cấp bởi Redux Store. Các hàm dispatch được sử dụng để gửi một Action đến Reducer để thay đổi trạng thái của ứng dụng.
+#48. Middleware là gì? Khi nào cần sử dụng middleware?
+
+#49. Làm sao để truy xuất dữ liệu từ store?
+bạn sử dụng useSelector để truy xuất dự liệu từ trong store của redux. useSelector là một hook được cung cấp bởi React Redux, cho phép bạn truy cập vào state của Redux store trong các component function. Bạn có thể sử dụng nó để lấy dữ liệu từ store và sử dụng trong component của mình.
+#50. Context API là gì? Cách thức hoạt động của Context API như thế nào? Context API có thể thay thế được Redux được không?
+**Context API** là một tính năng của React cho phép truyền dữ liệu (state, function, v.v.) tới nhiều component mà không cần truyền qua props từng cấp (tránh props drilling).
+
+**Cách thức hoạt động:**
+- Tạo một context bằng `React.createContext()`.
+- Sử dụng `<Context.Provider>` để cung cấp giá trị cho các component con.
+- Các component con sử dụng `useContext(Context)` để truy cập giá trị từ context.
+
+**Context API có thể thay thế Redux không?**
+- Context API phù hợp cho chia sẻ state đơn giản, ít thay đổi hoặc không quá phức tạp (ví dụ: theme, ngôn ngữ, user info).
+- Với các ứng dụng lớn, nhiều logic cập nhật state phức tạp, cần quản lý nhiều loại dữ liệu, Redux sẽ phù hợp hơn nhờ có middleware, devtools, quản lý luồng dữ liệu rõ ràng.
+- Tóm lại: Context API có thể thay thế Redux cho các trường hợp đơn giản, nhưng với ứng dụng lớn/phức tạp thì Redux vẫn tối ưu hơn.
+#51. So sánh Context API và Redux
+| Tiêu chí                | Context API                                        | Redux                                      |
+|-------------------------|----------------------------------------------------|--------------------------------------------|
+| Mục đích                | Chia sẻ dữ liệu giữa các component                 | Quản lý state toàn cục phức tạp            |
+| Cách sử dụng            | Đơn giản, tích hợp sẵn trong React                 | Cần cài thêm thư viện, cấu hình nhiều hơn  |
+| Quản lý state           | Không có reducer, chỉ lưu trữ và truyền dữ liệu    | Có reducer, action, store, middleware      |
+| Hiệu suất               | Có thể gây re-render không cần thiết nếu state lớn | Tối ưu hóa re-render tốt hơn               |
+| Middleware              | Không hỗ trợ                                       | Hỗ trợ middleware (redux-thunk, saga, ...) |
+| Devtools                | Không có                                           | Có Redux DevTools hỗ trợ debug             |
+| Trường hợp sử dụng      | State đơn giản, ít thay đổi                        | Ứng dụng lớn, state phức tạp, nhiều logic  |
+#52 Làm thế nào để tối ưu hiệu suất của ứng dụng React?
+
+#53. Làm sao để tối ưu hiệu suất của component?
+
+#54 Functional Programming
+Functional Programming (Lập trình hàm) là một paradigm (mô hình lập trình) trong đó chương trình được xây dựng chủ yếu bằng các hàm thuần (pure functions) và dữ liệu bất biến (immutable data). 
+
+##55 Promise với Async Await
+**Giống nhau:**
+- Đều dùng để xử lý các tác vụ bất đồng bộ trong JavaScript.
+- Đều trả về Promise, cho phép sử dụng `.then()` hoặc `.catch()` để xử lý kết quả hoặc lỗi.
+
+**Khác nhau:**
+- Promise sử dụng chuỗi `.then()` và `.catch()` để xử lý kết quả và lỗi, dẫn đến code có thể bị lồng nhau (callback hell) nếu xử lý nhiều bước.
+- Promise có thể xử lý nhiều task vụ bất động bộ song song với nhau như promise.all nhưng sẽ lỗi nếu như 1 trong số task vụ đó lỗi thì sẽ bị reject ngay nên trường hợp đó sẽ sử dụng Promise.allSettled
+
+Promise.all phù hợp khi bạn cần tất cả các promise đều thành công thì mới tiếp tục xử lý. Nếu chỉ cần 1 promise thất bại thì toàn bộ bị reject ngay, giúp bạn phát hiện lỗi sớm và không cần xử lý kết quả lỗi.
+
+Promise.allSettled phù hợp khi bạn muốn nhận kết quả của tất cả promise, bất kể thành công hay thất bại (ví dụ: tải nhiều ảnh, có ảnh lỗi cũng không ảnh hưởng các ảnh khác).
+
+- Async/Await giúp viết code bất đồng bộ trông giống như đồng bộ, dễ đọc và dễ bảo trì hơn. Từ khóa `await` chỉ có thể dùng trong hàm được khai báo với `async`.
+
+
+#56 Shopify là gì?**
+
+Shopify là một nền tảng thương mại điện tử (e-commerce platform) cho phép cá nhân và doanh nghiệp dễ dàng tạo lập, quản lý và vận hành cửa hàng trực tuyến. Shopify cung cấp các công cụ cần thiết để xây dựng website bán hàng, quản lý sản phẩm, xử lý thanh toán, theo dõi đơn hàng và tích hợp với các dịch vụ bên thứ ba.
+
+**Các tính năng chính của Shopify:**
+- **Quản lý sản phẩm:** Thêm, chỉnh sửa, quản lý danh mục sản phẩm.
+- **Thanh toán:** Tích hợp nhiều cổng thanh toán như PayPal, Stripe, Shopify Payments.
+- **Giao diện (Theme):** Cung cấp các theme sẵn có hoặc tùy chỉnh giao diện bằng Liquid, HTML, CSS, JavaScript.
+- **Ứng dụng (App):** Hỗ trợ mở rộng tính năng qua Shopify App Store.
+- **Quản lý đơn hàng:** Theo dõi, xử lý đơn hàng và quản lý vận chuyển.
+- **SEO và Marketing:** Tích hợp công cụ SEO, email marketing, và quảng cáo.
+
+**Ưu điểm:**
+- Dễ sử dụng, không cần nhiều kiến thức lập trình.
+- Hỗ trợ nhiều công cụ và tích hợp sẵn.
+- Hệ sinh thái phong phú với nhiều app và theme.
+
+**Nhược điểm:**
+- Chi phí có thể cao với các tính năng nâng cao.
+- Tùy chỉnh phức tạp hơn nếu cần thay đổi sâu về giao diện hoặc chức năng.
+
+**Tóm lại:**  
+Shopify là một giải pháp toàn diện cho các doanh nghiệp muốn xây dựng cửa hàng trực tuyến nhanh chóng và hiệu quả, đặc biệt phù hợp với các doanh nghiệp
+
+#57 RestFul Api là gì
+Là API được xây dựng theo chuẩn REST. ( Representational State Transfer )
+Cho phép các hệ thống giao tiếp với nhau qua giao thức HTTP.
+Dữ liệu thường được trao đổi dưới dạng JSON (cũng có thể là XML, YAML… nhưng JSON phổ biến nhất).
+
+GET → Lấy dữ liệu
+POST → Tạo dữ liệu mới
+PUT/PATCH → Cập nhật dữ liệu
+DELETE → Xóa dữ liệu
+
+#58 Design Pattern là gì?
+Trong React, nó là những cách tổ chức component, state, logic, props... để code dễ hiểu, tái sử dụng và dễ bảo trì hơn.

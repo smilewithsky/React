@@ -9,9 +9,12 @@ dễ dàng trong việc debug do cơ chế one way binding tức nhiệu compone
 React giữ lại 1 phần của DOM thật và khi trạng thái thay đổi trên DOM ảo thì cập nhật phần đó vào DOM thật chứ không thay đổi toàn bộ cả cây DOM
 
 #4. Single Page Application là gì ?
-
+SPA (Single Page Application) là kiểu lập trình web cho phép truy cập nhiều trang con mà không tải lại trang gốc. 
+Hiện đại, nhanh, chỉ tải tài nguyên lần đầu và lưu trong RAM, chỉ tải thêm dữ liệu mới khi cần. 
+Tuy nhiên, lần tải đầu có thể chậm nếu không tối ưu và kém thân thiện với SEO.
 #5. Sự khác nhau giữa class component và functional component ?
-
+Class Component: có thể giữ hoặc quản lý state. phực tạp hơn so với stateless component có thể hoạt động với tất cả lifecycle methods và có thể tái sử dụng
+Function Component: không thể giữ hoặc quản lý state. ĐƠn giản dễ hiểu. Không thể tái sử dụng
 #6. Hãy trình bày những giai đoạn có trong life cycle của một component ?
 Mounting - khời tạo
 Updating - cập nhật
@@ -102,7 +105,7 @@ referential equality để so sánh dependencies trong mảng với trị của 
 #33. Side effect là gì ? Kể tên một số side effects bạn thường xử lý ?
 side effect là các tác vụ từ phía userr như call api , event handle
 
-    #34. Clean up function của useEffect có chức năng gì ? Khi nào cần sử dụng ? Ví dụ.
+#34. Clean up function của useEffect có chức năng gì ? Khi nào cần sử dụng ? Ví dụ.
 clean up là hàm dọn dẹp của useEffect dùng để xử lý sau khi mà component bị hủy hay chạy lại effect điều này giúp vấn đề về bộ nhớ được đảm bảo
 
 #35. useCallback và useMemo là gì ? Giống và khác nhau thế nào ?
@@ -112,6 +115,7 @@ memo trả về kết quả giá trị của callback
 callback trả về callback
 
 #37. React - router - dom là gì ? Tại sao phải sử dụng react - router - dom ?
+
 #40. Có những cách nào để chuyển trang bằng react-router-dom?
 Sử dụng <Link>: component <Link> giúp tạo ra các liên kết dẫn đến các route khác mà không làm tải lại trang.
 Sử dụng useNavigate
@@ -120,6 +124,7 @@ Sử dụng history Prop trong component
 #41. Private route là gì? Hãy mô tả cách triển khai?
 
 #42. Làm sao để xử lý khi có lỗi 404 page not found?
+sử dụng react router dom để tạo ra 1 route không có path nào đó và hiển thị ra 1 component 404 page not found
 #43. Làm sao để truyền và lấy được params thông qua URL?
 sử dụng useParams từ thư viện react-route-dom
 
@@ -133,3 +138,5 @@ sử dụng useParams từ thư viện react-route-dom
 #49. Làm sao để truy xuất dữ liệu từ store?
 #50. Context API là gì? Cách thức hoạt động của Context API như thế nào? Context API có thể thay thế được Redux được không?
 #51. So sánh Context API và Redux
+#52 Làm thế nào để tối ưu hiệu suất của ứng dụng React?
+#53. Làm sao để tối ưu hiệu suất của component?

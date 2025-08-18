@@ -7,10 +7,15 @@ ReactJS hoạt động bằng cách sử dụng Virtual DOM và mô hình one-wa
 #2. Ưu và nhược điểm của ReactJs?
 Ưu điểm:
 Dễ dàng tạo các ứng dụng động: React giúp tạo các ứng dụng web động dễ dàng hơn vì ít code hơn mà lại cung cấp nhiều chức năng hơn, trong khi với các ứng dụng JavaScript, cách code thường có xu hướng trở nên phức tạp.
+
 Hiệu suất cải thiện: React sử dụng DOM ảo, giúp các ứng dụng web hoạt động nhanh hơn. Virtual DOM so sánh trạng thái trước đó của nó và chỉ cập nhật các thành phần có trạng thái thay đổi trong DOM thực thay vì cập nhật tất cả các thành phần, như các ứng dụng web thông thường.
+
 Các thành phần có thể tái sử dụng: Các components là nền tảng của bất kỳ ứng dụng React nào và một ứng dụng đơn lẻ thường bao gồm nhiều components. Các components này có logic và các điều khiển riêng và chúng có thể được tái sử dụng thông qua ứng dụng, do đó làm giảm đáng kể thời gian phát triển một ứng dụng.
+
 Luồng dữ liệu một chiều: React tuân theo luồng dữ liệu một chiều. Điều này có nghĩa là khi thiết kế một ứng dụng React, chúng ta thường lồng các thành phần con vào bên trong các thành phần mẹ. Và vì dữ liệu chảy theo một hướng, nên việc debug và biết vấn đề xảy ra ở đâu trong ứng dụng sẽ trở nên dễ dàng hơn.
+
 Các công cụ chuyên dụng để debug dễ dàng: Facebook đã phát hành một tiện ích mở rộng Chrome mà chúng ta có thể sử dụng để debug các ứng dụng React. Điều này làm cho quá trình gỡ lỗi React cho các ứng dụng web nhanh hơn và dễ dàng hơn.
+
 Nhược điểm:
 React không phải là một framework toàn diện vì nó chỉ là một thư viện.
 Các thành phần của React rất nhiều và sẽ mất thời gian để nắm bắt đầy đủ lợi ích của tất cả.
@@ -136,6 +141,7 @@ Chứa dữ liệu về components
 Có thể thay đổi
 Components con không thể truy cập
 Stateless components không thể state
+
 Props
 Cho phép truyền dữ liệu từ component sang những components khác
 Không thể thay đổi (chỉ đọc)
@@ -179,7 +185,6 @@ Effects không cần Cleanup
 Effects cần phải Cleanup
 
 #34. Clean up function của useEffect có chức năng gì ? Khi nào cần sử dụng ? Ví dụ.
-
 Clean-up function trong useEffect là một hàm mà bạn có thể cung cấp để thực hiện các công việc dọn dẹp hoặc hủy các tài nguyên khi component unmount hoặc khi dependencies thay đổi. Chức năng này giúp tránh rò rỉ bộ nhớ, đảm bảo an toàn và làm sạch tài nguyên trước khi component bị xóa khỏi cây DOM.
 Sử dụng khi: Huỷ đăng kí sự kiện, huỷ đăng kí Timer hoặc Interval, huỷ Fetch API,..
 
@@ -264,3 +269,4 @@ là một chức năng của React
 React giữ lại một bản nhỏ của DOM thật và khi trang thái của một đối tượng thay đổi trên DOM ảo thì chỉ việc thay đổi đối tượng đó trên DOM thật thôi thay vì cập nhật tất cả
 
 Arroww function và function khác nhau như nào
+

@@ -14,25 +14,18 @@ React là framework chứ không phải thư viện
 nắm bắt các thành phần và lợi ích của React tốn thời gian
 
 #3. Virtual DOM là gì ?
-hay còn gọi là DOM ảo 
-được ReactJS giữ 1 bản từ DOM thật và khi trang thái của đối tượng thay đổi, DOM ảo sẽ chỉ thay đổi đối tượng đó trên Dom thật chứ không phải cập nhật tất cả đối tượng
+Virtual DOM trong React là một phiên bản ảo của DOM thực, được React dùng để quản lý giao diện. Nó như một bản sao nhẹ trong bộ nhớ, lưu trữ cấu trúc của các component. Khi có thay đổi (như state hoặc props), React so sánh Virtual DOM mới với bản cũ, tính toán sự khác biệt (diffing), rồi chỉ cập nhật những phần cần thiết lên DOM thật. Cách này giúp tăng tốc độ và giảm thao tác nặng trên DOM thực.
 
 #4. Single Page Application là gì ?
-SPA là một kiểu lập trình web mà ở đó người dùng có thể truy cập vào nhiều trang web con khác nhau mà không làm ảnh hưởng đến trang web gốc
-· Được cho là cách tiếp cận hiện đại hơn
-· Không yêu cầu tải lại trang trong quá trình sử dụng
-· Kiến trúc 1 trang
-· Nhanh hơn khi sử dụng (vì tải hết 1 lần và lưu tại RAM) vì phần lớn tài nguyên chỉ tải trong lần đầu và chỉ tải thêm dữ liệu mới khi cần
-· Nhưng lần đầu tải có thể bị chậm nếu tối ưu không tốt
-· Không thân thiện với SEO hay Search Engine Optimization (tối ưu hóa công cụ tìm kiếm)
+SPA (Single Page Application) là kiểu lập trình web cho phép truy cập nhiều trang con mà không tải lại trang gốc. Hiện đại, nhanh, chỉ tải tài nguyên lần đầu và lưu trong RAM, chỉ tải thêm dữ liệu mới khi cần. Tuy nhiên, lần tải đầu có thể chậm nếu không tối ưu và kém thân thiện với SEO.
 #5. Sự khác nhau giữa class component và functional component ?
 Class Component: có thể giữ hoặc quản lý state. phực tạp hơn so với stateless component có thể hoạt động với tất cả lifecycle methods và có thể tái sử dụng
 Function Component: không thể giữ hoặc quản lý state. ĐƠn giản dễ hiểu. Không thể tái sử dụng
 
 #6. Hãy trình bày những giai đoạn có trong life cycle của một component ?
-Khởi Tạo - Mounting
-Cập nhật - Updating
-Kết thúc - Unmounting
+Khởi Tạo - Mounting ( Tạo, render, gắn DOM )
+Cập nhật - Updating ( Re-render do props/state đổi )
+Kết thúc - Unmounting ( Xóa khỏi DOM )
 
 tương ứng với useEffect với từng giai đoạn thì ta có
 Mounting - UseEffect với dependencies là []
@@ -61,7 +54,7 @@ sự dụng hàm map để lấy toàn bộ các phần tử và render nó ra n
 #13. Tại sao mỗi thành phần trong list cần có key ? Keys được dùng để làm gì ?
 keys là một thành phần giúp phân biệt các phần tử trong list
 khi render một list việc cung cấp giá trị cho keys là cần thiết
-keys nên là một ID duy nhất không nên trùng với các key của phần tử khác
+keys nên là một ID duy nhất không nên trùng với các key của phần tử khác ( Vì React sử dụng key để xác định các phần tử nào đã thay đổi , được thêm vào hoặc bị xóa. Nếu không có key duy nhất, React sẽ không thể xác định chính xác các phần tử nào cần cập nhật, dẫn đến hiệu suất kém và)
 
 #15. React Hook là gì ? Hãy kể tên những hooks mà bạn biết ? Các ưu điểm của React Hooks ?
 React Hooks là các hàm tích hợp cho phép các nhà phát triển sử dụng các phương thức trạng thái và vòng đời trong các thành phần React. Đây là những tính năng mới được bổ sung có sẵn trong phiên bản React 16.8. Mỗi vòng đời của một thành phần có 3 giai đoạn bao gồm gắn kết, ngắt kết nối và cập nhật.
@@ -196,3 +189,16 @@ Context API có thể thay thế Redux trong một số trường hợp, nhất 
 #51. So sánh Context API và Redux
 Context API: thích hợp cho các ứng dụng nhỏ và đơn giản, giảm độ phức tạp của mã nguồn. Cho phép truyền dữ liệu giữa các thành phần mà không cần sử dụng props.
 Redux: thích hợp với ứng dụng lớn và phức tạp, nơi quản lý trạng thái trở nên phức tạp.
+
+
+#52 làm sao để tối ưu hiệu suất một ứng dụng React?
+Để tối ưu một ứng dụng React, bạn có thể thực hiện các bước sau:
+1. Sử dụng PureComponent hoặc React.memo: Giúp tránh việc render lại các component không cần thiết khi props không thay đổi.
+2. Sử dụng useCallback và useMemo: Giúp tối ưu hóa các hàm và giá trị tính toán, tránh việc tạo lại chúng mỗi lần render.
+3. Tối ưu hóa việc sử dụng state: Tránh việc lưu trữ quá nhiều state không cần thiết, chỉ lưu trữ những dữ liệu thực sự cần thiết.
+4. Sử dụng lazy loading: Tải các component chỉ khi cần thiết, giúp giảm tải ban đầu của ứng dụng.
+5. Sử dụng code splitting: Tách mã thành các phần nhỏ hơn để tải chúng khi cần thiết, giúp cải thiện hiệu suất tải trang.
+6. Tối ưu hóa việc sử dụng props: Tránh việc truyền quá nhiều props không cần thiết, chỉ truyền những dữ liệu thực sự cần thiết cho component.
+7. Sử dụng React Profiler: Để theo dõi hiệu suất của ứng dụng và tìm ra các bottleneck trong quá trình render.
+8. Tối ưu hóa hình ảnh và tài nguyên: Sử dụng các công cụ nén hình ảnh, lazy loading cho hình ảnh và tài nguyên khác để giảm thời gian tải trang.
+9. Trong trường hợp load list lớn thì sử dụng pagination hoặc virtualization: Giúp giảm số lượng phần tử được render tại một thời điểm, cải thiện hiệu suất.
